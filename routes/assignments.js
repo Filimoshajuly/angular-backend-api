@@ -214,6 +214,7 @@ function deleteAssignment(req, res) {
 }
 
 router.get('/assignments', getAssignments);
+router.get('/assignments/peupler', peuplerBD);
 router.get('/assignments/:id', getAssignment);
 router.post('/assignments', postAssignment);
 router.put('/assignments/:id', updateAssignment); 
