@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const assignmentsData = require('../data');
+const assignmentsData = require('./data');
 
 let Assignment = require('../model/assignment');
 
@@ -9,18 +9,23 @@ function peuplerBD(req, res) {
     
     Assignment.deleteMany({})
         .then(() => {
-          
-            const assignmentsToInsert = assignmentsData.map(a => ({
-                id: a.id,
-                nom: a.nom,
-                dateDeRendu: new Date(a.dateDeRendu || a.DateRendu),
-                rendu: a.rendu !== undefined ? a.rendu : a.Rendu
-            }));
+            const assignmentsToInsert = assignmentsData.map(a => {
+           
+                const [month, day, year] = a.DateRendu.split('/');
+                const dateDeRendu = new Date(`${year}-${month}-${day}`);
+                
+                return {
+                    id: a.id,
+                    nom: a.nom,
+                    dateDeRendu: dateDeRendu,
+                    rendu: a.Rendu
+                };
+            });
             
             return Assignment.insertMany(assignmentsToInsert);
         })
         .then((result) => {
-            console.log(`✅ ${result.length} assignments insérés!`);
+            console.log(` ${result.length} assignments insérés!`);
             res.json({ 
                 success: true,
                 message: `${result.length} assignments ajoutés à la base`,
@@ -28,10 +33,11 @@ function peuplerBD(req, res) {
             });
         })
         .catch(err => {
-            console.error("❌ Erreur:", err);
+            console.error(" Erreur:", err);
             res.status(500).json({ error: err.message });
         });
 }
+
 // Récupérer tous les assignments (GET)
 function getAssignments(req, res){
     const page = parseInt(req.query.page) || 1;

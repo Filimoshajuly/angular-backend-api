@@ -1,4 +1,5 @@
-export const assignmentsData: {id: number, nom: string, DateRendu: string, Rendu: boolean}[] = [ {"id":1,"nom":"Schooley","DateRendu":"10/26/2025","Rendu":false},
+const assignmentsData = [
+ {"id":1,"nom":"Schooley","DateRendu":"10/26/2025","Rendu":false},
 {"id":2,"nom":"Wipfler","DateRendu":"8/20/2025","Rendu":false},
 {"id":3,"nom":"Bearsmore","DateRendu":"10/5/2025","Rendu":false},
 {"id":4,"nom":"Myrick","DateRendu":"12/8/2025","Rendu":false},
@@ -498,3 +499,5 @@ export const assignmentsData: {id: number, nom: string, DateRendu: string, Rendu
 {"id":498,"nom":"Gilbride","DateRendu":"10/24/2025","Rendu":true},
 {"id":499,"nom":"Pacht","DateRendu":"10/31/2024","Rendu":false},
 {"id":500,"nom":"Munn","DateRendu":"6/8/2025","Rendu":true}];
+
+module.exports = assignmentsData;
