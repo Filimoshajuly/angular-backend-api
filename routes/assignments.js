@@ -1,37 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const assignmentsData = [
-  {
-    "id": 1,
-    "nom": "TP1 - Introduction à Angular",
-    "dateDeRendu": "2024-09-15T00:00:00.000Z",
-    "rendu": true
-  },
-  {
-    "id": 2, 
-    "nom": "TP2 - Components et Templates",
-    "dateDeRendu": "2024-09-22T00:00:00.000Z",
-    "rendu": false
-  },
-  {
-    "id": 3,
-    "nom": "TP3 - Services et HTTP",
-    "dateDeRendu": "2024-09-29T00:00:00.000Z", 
-    "rendu": true
-  },
-  {
-    "id": 4,
-    "nom": "TP4 - Forms et Validation",
-    "dateDeRendu": "2024-10-06T00:00:00.000Z",
-    "rendu": false
-  },
-  {
-    "id": 5,
-    "nom": "TP5 - Routing et Navigation", 
-    "dateDeRendu": "2024-10-13T00:00:00.000Z",
-    "rendu": true
-  }
-];
+const assignmentsData = require('../data');
 
 let Assignment = require('../model/assignment');
 
