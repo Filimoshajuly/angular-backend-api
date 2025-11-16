@@ -7,8 +7,7 @@ let mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.set('debug', true);
 
-const uri = 'mongodb+srv://ifilippova:Raspberry233@cluster0.ephvplw.mongodb.net/assignments?retryWrites=true&w=majority';
-
+const uri = 'mongodb+srv://ifilippova:Raspberry2%4033@cluster0.ephvplw.mongodb.net/assignments?retryWrites=true&w=majority';
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true
