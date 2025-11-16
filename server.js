@@ -55,3 +55,18 @@ app.listen(port, "0.0.0.0");
 console.log('Serveur démarré sur http://localhost:' + port);
 
 module.exports = app;
+
+mongoose.connect(uri, options)
+  .then(() => {
+    console.log("✅ Connecté à MongoDB avec succès!");
+    console.log("✅ Base de données:", mongoose.connection.db.databaseName);
+    
+    // Lister toutes коллекции
+    mongoose.connection.db.listCollections().toArray()
+      .then(collections => {
+        console.log("📁 Collections dans la base:", collections.map(c => c.name));
+      });
+  })
+  .catch(err => {
+    console.log('❌ Erreur de connexion MongoDB:', err.message);
+  });
