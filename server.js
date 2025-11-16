@@ -7,12 +7,11 @@ let mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.set('debug', true);
 
-const uri = 'mongodb+srv://ifilippova:Raspberry2@33@cluster0.ephvplw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const uri = 'mongodb+srv://ifilippova:Raspberry233@cluster0.ephvplw.mongodb.net/assignments?retryWrites=true&w=majority';
 
 const options = {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify:false
+  useUnifiedTopology: true
 };
 
 mongoose.connect(uri, options)
@@ -22,7 +21,8 @@ mongoose.connect(uri, options)
     console.log("vérifiez with http://localhost:8010/api/assignments que cela fonctionne")
     },
     err => {
-      console.log('Erreur de connexion: ', err);
+      console.log('Erreur de connexion: ', err.message);
+      console.log('URI utilisé: ', uri);
     });
 
 // Pour accepter les connexions cross-domain (CORS)
@@ -42,6 +42,14 @@ let port = process.env.PORT || 8010;
 // ⭐ CORRECTION: UTILISER LE ROUTER DIRECTEMENT
 const prefix = '/api';
 app.use(prefix, assignment);
+
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'API Assignments est en ligne!',
+    status: 'OK',
+    timestamp: new Date().toISOString()
+  });
+});
 
 // On démarre le serveur
 app.listen(port, "0.0.0.0");
